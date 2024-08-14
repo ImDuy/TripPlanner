@@ -17,7 +17,7 @@ export default function LandingPage() {
   return (
     <View style={defaultStyles.container}>
       <Image source={IMAGES.landing} style={styles.image} resizeMode="cover" />
-      <View style={[styles.contentContainer, { paddingBottom: bottom }]}>
+      <View style={[styles.contentContainer, { paddingBottom: bottom + 16 }]}>
         <Text style={styles.title}>AI Travel Planner</Text>
         <Text style={styles.normalText}>
           Discover your next adventure effortlessly.{"\n"}Personalized
