@@ -5,11 +5,17 @@ import { AuthStackParamList } from "../utils/navTypeCheck";
 import LandingPage from "../screens/LandingPage";
 import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
+import COLORS from "../constants/colors";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 export default function AuthStackNavigation() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: COLORS.white },
+      }}
+    >
       <Stack.Screen name="LandingPage" component={LandingPage} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />

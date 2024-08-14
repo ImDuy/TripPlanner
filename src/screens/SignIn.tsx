@@ -5,11 +5,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AuthTextInput from "../components/AuthTextInput";
 import COLORS from "../constants/colors";
 import AppButton from "../components/AppButton";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { AuthStackParamList } from "../utils/navTypeCheck";
+import { screenPadding } from "../constants/sizes";
 
 export default function SignIn() {
   const { top, bottom } = useSafeAreaInsets();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const [signInInfo, setSignInInfo] = useState({ email: "", password: "" });
 
   const handleEmailTextChanged = (text: string) => {
@@ -18,13 +20,21 @@ export default function SignIn() {
   const handlePasswordTextChanged = (text: string) => {
     setSignInInfo({ ...signInInfo, password: text });
   };
+  const handleSignUpNavigation = () => {
+    navigation.navigate("SignUp");
+  };
+  const handleSignIn = () => {};
 
   return (
     <View
-      style={[styles.container, { paddingTop: top, paddingBottom: bottom }]}
+      style={{
+        ...defaultStyles.screenContainer,
+        paddingTop: top,
+        paddingBottom: bottom,
+      }}
     >
-      <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Let's Sign You In</Text>
+      <View style={styles.headerContainer}>
+        <Text style={defaultStyles.headerTitle}>Let's Sign You In</Text>
         <Text style={[styles.lightTile, { marginTop: 24 }]}>Welcome back</Text>
         <Text style={styles.lightTile}>You've been missed!</Text>
       </View>
@@ -45,28 +55,23 @@ export default function SignIn() {
       </View>
 
       <View style={defaultStyles.container}>
-        <AppButton label="Sign In" isFilled />
-        <AppButton label="Create Account" containerStyle={{ marginTop: 20 }} />
+        <AppButton label="Sign In" isFilled onPress={handleSignIn} />
+        <AppButton
+          label="Create Account"
+          containerStyle={{ marginTop: 20 }}
+          onPress={handleSignUpNavigation}
+        />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 24,
-    backgroundColor: COLORS.white,
-  },
-  sectionContainer: {
+  headerContainer: {
     flex: 1,
     justifyContent: "center",
   },
-  title: {
-    fontFamily: "outfit-bold",
-    color: COLORS.primary,
-    fontSize: 30,
-  },
+
   lightTile: {
     marginTop: 8,
     fontFamily: "outfit-regular",
