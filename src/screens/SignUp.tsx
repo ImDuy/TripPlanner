@@ -6,6 +6,7 @@ import { AuthStackParamList } from "../utils/navTypeCheck";
 import defaultStyles from "../constants/styles";
 import AuthTextInput from "../components/AuthTextInput";
 import AppButton from "../components/AppButton";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function SignUp() {
   const { top, bottom } = useSafeAreaInsets();
@@ -31,14 +32,16 @@ export default function SignUp() {
   const handleSignUp = () => {};
 
   return (
-    <View
-      style={{
+    <KeyboardAwareScrollView
+      contentContainerStyle={{
         ...defaultStyles.screenContainer,
         paddingTop: top,
         paddingBottom: bottom,
       }}
+      alwaysBounceVertical={false}
+      showsVerticalScrollIndicator={false}
     >
-      <View style={styles.sectionContainer}>
+      <View style={styles.headerContainer}>
         <Text style={defaultStyles.headerTitle}>Create New Account</Text>
       </View>
 
@@ -71,12 +74,12 @@ export default function SignUp() {
           onPress={handleSignInNavigation}
         />
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
+  headerContainer: {
     flex: 1,
     justifyContent: "center",
   },

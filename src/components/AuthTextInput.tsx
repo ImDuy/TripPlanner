@@ -1,3 +1,5 @@
+import { Entypo } from "@expo/vector-icons";
+import React, { useState } from "react";
 import {
   StyleProp,
   StyleSheet,
@@ -8,9 +10,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import React, { useState } from "react";
 import COLORS from "../constants/colors";
-import { Entypo } from "@expo/vector-icons";
 interface Props extends TextInputProps {
   title: string;
   isPassword?: boolean;
