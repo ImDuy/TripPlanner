@@ -1,11 +1,10 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AuthStackParamList } from "../utils/navTypeCheck";
-import LandingPage from "../screens/LandingPage";
-import SignIn from "../screens/SignIn";
-import SignUp from "../screens/SignUp";
+import React from "react";
 import COLORS from "../constants/colors";
+import LandingPage from "../screens/auth/LandingPage";
+import SignIn from "../screens/auth/SignIn";
+import SignUp from "../screens/auth/SignUp";
+import { AuthStackParamList } from "../utils/navTypeCheck";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 export default function AuthStackNavigation() {

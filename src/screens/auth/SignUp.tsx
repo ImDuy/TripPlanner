@@ -2,12 +2,16 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "../utils/navTypeCheck";
-import defaultStyles from "../constants/styles";
-import AuthTextInput from "../components/AuthTextInput";
-import AppButton from "../components/AppButton";
+import { AuthStackParamList } from "../../utils/navTypeCheck";
+import defaultStyles from "../../constants/styles";
+import AuthTextInput from "../../components/AuthTextInput";
+import AppButton from "../../components/AppButton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../utils/firebaseConfig";
+import Toast from "react-native-root-toast";
 
+let toast: any;
 export default function SignUp() {
   const { top, bottom } = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
@@ -16,6 +20,7 @@ export default function SignUp() {
     email: "",
     password: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFullNameTextChanged = (text: string) => {
     setSignUpInfo({ ...signUpInfo, fullName: text });
@@ -29,7 +34,29 @@ export default function SignUp() {
   const handleSignInNavigation = () => {
     navigation.navigate("SignIn");
   };
-  const handleSignUp = () => {};
+  const handleSignUp = () => {
+    console.log("clicked");
+    // check info empty?
+    if (!signUpInfo.fullName || !signUpInfo.email || !signUpInfo.password) {
+      if (toast) Toast.hide(toast);
+      toast = Toast.show("Please enter all fields");
+      return;
+    }
+    // sign up
+    setIsSubmitting(true);
+    createUserWithEmailAndPassword(auth, signUpInfo.email, signUpInfo.password)
+      .then((userCredential) => {
+        // Signed up
+        if (toast) Toast.hide(toast);
+        toast = Toast.show("Signed up successfully!");
+      })
+      .catch((error) => {
+        const errorMessage = error.message.slice(10);
+        if (toast) Toast.hide(toast);
+        toast = Toast.show(errorMessage);
+      })
+      .finally(() => setIsSubmitting(false));
+  };
 
   return (
     <KeyboardAwareScrollView
@@ -48,29 +75,40 @@ export default function SignUp() {
       <View style={{ flex: 3 }}>
         <AuthTextInput
           title="Full Name"
-          textInputValue={signUpInfo.fullName}
+          value={signUpInfo.fullName}
           onChangeText={handleFullNameTextChanged}
+          autoCapitalize="words"
         />
         <AuthTextInput
           title="Email"
           containerStyle={{ marginTop: 20 }}
-          textInputValue={signUpInfo.email}
+          value={signUpInfo.email}
           onChangeText={handleEmailTextChanged}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
         <AuthTextInput
           title="Password"
           isPassword
           containerStyle={{ marginTop: 20 }}
-          textInputValue={signUpInfo.password}
+          value={signUpInfo.password}
           onChangeText={handlePasswordTextChanged}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
       </View>
 
       <View style={{ flex: 2 }}>
-        <AppButton label="Create Account" isFilled onPress={handleSignUp} />
+        <AppButton
+          label="Create Account"
+          isFilled
+          isLoading={isSubmitting}
+          onPress={handleSignUp}
+        />
         <AppButton
           label="Back to Sign In"
           containerStyle={{ marginTop: 20 }}
+          isLoading={isSubmitting}
           onPress={handleSignInNavigation}
         />
       </View>

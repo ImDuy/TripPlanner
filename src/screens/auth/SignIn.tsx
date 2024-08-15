@@ -1,19 +1,23 @@
-import { Platform, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import defaultStyles from "../constants/styles";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AuthTextInput from "../components/AuthTextInput";
-import COLORS from "../constants/colors";
-import AppButton from "../components/AppButton";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "../utils/navTypeCheck";
-import { screenPadding } from "../constants/sizes";
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AppButton from "../../components/AppButton";
+import AuthTextInput from "../../components/AuthTextInput";
+import COLORS from "../../constants/colors";
+import defaultStyles from "../../constants/styles";
+import { AuthStackParamList } from "../../utils/navTypeCheck";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../utils/firebaseConfig";
+import Toast from "react-native-root-toast";
 
+let toast: any;
 export default function SignIn() {
   const { top, bottom } = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const [signInInfo, setSignInInfo] = useState({ email: "", password: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleEmailTextChanged = (text: string) => {
     setSignInInfo((prevState) => {
@@ -28,7 +32,28 @@ export default function SignIn() {
   const handleSignUpNavigation = () => {
     navigation.navigate("SignUp");
   };
-  const handleSignIn = () => {};
+  const handleSignIn = () => {
+    // check info empty?
+    if (!signInInfo.email || !signInInfo.password) {
+      if (toast) Toast.hide(toast);
+      toast = Toast.show("Please enter all fields");
+      return;
+    }
+    //sign in
+    setIsSubmitting(true);
+    signInWithEmailAndPassword(auth, signInInfo.email, signInInfo.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message.slice(10);
+        if (toast) Toast.hide(toast);
+        toast = Toast.show(errorMessage);
+      })
+      .finally(() => setIsSubmitting(false));
+  };
 
   return (
     <KeyboardAwareScrollView
@@ -52,23 +77,32 @@ export default function SignIn() {
         <View style={defaultStyles.container}>
           <AuthTextInput
             title="Email"
-            textInputValue={signInInfo.email}
+            value={signInInfo.email}
             onChangeText={handleEmailTextChanged}
+            autoCapitalize="none"
+            autoCorrect={false}
           />
           <AuthTextInput
             title="Password"
             isPassword
             containerStyle={{ marginTop: 20 }}
-            textInputValue={signInInfo.password}
+            value={signInInfo.password}
             onChangeText={handlePasswordTextChanged}
+            autoCapitalize="none"
           />
         </View>
 
         <View style={defaultStyles.container}>
-          <AppButton label="Sign In" isFilled onPress={handleSignIn} />
+          <AppButton
+            label="Sign In"
+            isFilled
+            isLoading={isSubmitting}
+            onPress={handleSignIn}
+          />
           <AppButton
             label="Create Account"
             containerStyle={{ marginTop: 20 }}
+            isLoading={isSubmitting}
             onPress={handleSignUpNavigation}
           />
         </View>

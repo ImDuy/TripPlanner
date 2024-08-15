@@ -1,10 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
-import AuthStackNavigation from "./src/navigation/AuthStackNavigation";
 import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import AuthStackNavigation from "./src/navigation/AuthStackNavigation";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -28,17 +28,10 @@ export default function App() {
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <AuthStackNavigation />
+        <RootSiblingParent>
+          <AuthStackNavigation />
+        </RootSiblingParent>
       </NavigationContainer>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -15,15 +15,13 @@ interface Props extends TextInputProps {
   title: string;
   isPassword?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
-  textInputValue?: string;
-  onChangeText?: (text: string) => void;
 }
 export default function AuthTextInput({
   title,
   containerStyle,
   isPassword = false,
-  textInputValue = "",
-  onChangeText,
+  value = "",
+  ...textInputProps
 }: Props) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -36,10 +34,10 @@ export default function AuthTextInput({
           placeholder={`Enter ${title}`}
           placeholderTextColor={COLORS.gray}
           secureTextEntry={isPassword && !showPassword}
-          value={textInputValue}
-          onChangeText={onChangeText}
+          value={value}
+          {...textInputProps}
         />
-        {isPassword && textInputValue.length > 0 && (
+        {isPassword && value.length > 0 && (
           <TouchableOpacity
             onPress={() => setShowPassword((prevState) => !prevState)}
           >
@@ -66,7 +64,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 14,
-
     borderRadius: 14,
     borderWidth: 1,
     borderColor: COLORS.primary,

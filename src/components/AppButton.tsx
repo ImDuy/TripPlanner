@@ -1,23 +1,25 @@
+import React from "react";
 import {
   StyleProp,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
   ViewStyle,
 } from "react-native";
-import React from "react";
 import COLORS from "../constants/colors";
+import AnimatedLoadingIcon from "./AnimatedLoadingIcon";
 
 interface Props {
   label: string;
   isFilled?: boolean;
+  isLoading?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
   onPress?: () => void;
 }
 export default function AppButton({
   label,
   isFilled = false,
+  isLoading = false,
   onPress,
   containerStyle,
 }: Props) {
@@ -28,23 +30,29 @@ export default function AppButton({
         { backgroundColor: isFilled ? COLORS.primary : COLORS.white },
         containerStyle,
       ]}
+      disabled={isLoading}
       onPress={onPress}
     >
-      <Text
-        style={[
-          styles.label,
-          { color: isFilled ? COLORS.white : COLORS.primary },
-        ]}
-      >
-        {label}
-      </Text>
+      {isLoading ? (
+        <AnimatedLoadingIcon color={isFilled ? COLORS.white : COLORS.primary} />
+      ) : (
+        <Text
+          style={[
+            styles.label,
+            { color: isFilled ? COLORS.white : COLORS.primary },
+          ]}
+        >
+          {label}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 18,
+    paddingHorizontal: 18,
+    height: 58,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 14,

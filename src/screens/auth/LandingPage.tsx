@@ -1,11 +1,11 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import defaultStyles from "../constants/styles";
-import IMAGES from "../constants/images";
-import COLORS from "../constants/colors";
-import { screenSize } from "../constants/sizes";
+import defaultStyles from "../../constants/styles";
+import IMAGES from "../../constants/images";
+import COLORS from "../../constants/colors";
+import { screenSize } from "../../constants/sizes";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "../utils/navTypeCheck";
+import { AuthStackParamList } from "../../utils/navTypeCheck";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function LandingPage() {
