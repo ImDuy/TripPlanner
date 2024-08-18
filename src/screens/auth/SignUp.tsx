@@ -2,13 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "../../utils/navTypeCheck";
+import { AuthStackParamList } from "../../utils/navigation-types";
 import defaultStyles from "../../constants/styles";
 import AuthTextInput from "../../components/AuthTextInput";
 import AppButton from "../../components/AppButton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../utils/firebaseConfig";
+import { auth } from "../../utils/firebase-config";
 import Toast from "react-native-root-toast";
 
 let toast: any;

@@ -8,3 +8,5 @@ export const screenSize = {
 export const screenPadding = {
   horizontal: 24,
 };
+
+export const tabBarHeight = 56;

@@ -1,5 +1,6 @@
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import React, { useEffect } from "react";
+import { StyleProp, ViewStyle } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -7,7 +8,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import COLORS from "../constants/colors";
-import { AntDesign } from "@expo/vector-icons";
 interface Props {
   size?: number;
   color?: string;

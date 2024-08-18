@@ -3,6 +3,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
@@ -14,6 +15,7 @@ interface Props {
   isFilled?: boolean;
   isLoading?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
 }
 export default function AppButton({
@@ -22,6 +24,7 @@ export default function AppButton({
   isLoading = false,
   onPress,
   containerStyle,
+  labelStyle,
 }: Props) {
   return (
     <TouchableOpacity
@@ -40,6 +43,7 @@ export default function AppButton({
           style={[
             styles.label,
             { color: isFilled ? COLORS.white : COLORS.primary },
+            labelStyle,
           ]}
         >
           {label}
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.primary,
   },
   label: {
-    fontFamily: "outfit-regular",
+    fontFamily: "outfit-medium",
     fontSize: 16,
   },
 });

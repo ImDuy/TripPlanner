@@ -1,20 +1,24 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Toast from "react-native-root-toast";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AppButton from "../../components/AppButton";
 import AuthTextInput from "../../components/AuthTextInput";
 import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
-import { AuthStackParamList } from "../../utils/navTypeCheck";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../utils/firebaseConfig";
-import Toast from "react-native-root-toast";
+import { auth } from "../../utils/firebase-config";
+import {
+  AuthStackParamList,
+  RootStackParamList,
+} from "../../utils/navigation-types";
 
 let toast: any;
 export default function SignIn() {
   const { top, bottom } = useSafeAreaInsets();
+  const rootNavigation = useNavigation<NavigationProp<RootStackParamList>>();
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const [signInInfo, setSignInInfo] = useState({ email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,8 +48,9 @@ export default function SignIn() {
     signInWithEmailAndPassword(auth, signInInfo.email, signInInfo.password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        console.log(user);
+        rootNavigation.navigate("TabNavigation", {
+          screen: "HomeStackNavigation",
+        });
       })
       .catch((error) => {
         const errorMessage = error.message.slice(10);

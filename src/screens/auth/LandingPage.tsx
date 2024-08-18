@@ -5,7 +5,7 @@ import IMAGES from "../../constants/images";
 import COLORS from "../../constants/colors";
 import { screenSize } from "../../constants/sizes";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "../../utils/navTypeCheck";
+import { AuthStackParamList } from "../../utils/navigation-types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function LandingPage() {

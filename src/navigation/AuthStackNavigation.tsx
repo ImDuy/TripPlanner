@@ -4,7 +4,7 @@ import COLORS from "../constants/colors";
 import LandingPage from "../screens/auth/LandingPage";
 import SignIn from "../screens/auth/SignIn";
 import SignUp from "../screens/auth/SignUp";
-import { AuthStackParamList } from "../utils/navTypeCheck";
+import { AuthStackParamList } from "../utils/navigation-types";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 export default function AuthStackNavigation() {

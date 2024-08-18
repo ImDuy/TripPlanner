@@ -3,8 +3,8 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import AuthStackNavigation from "./src/navigation/AuthStackNavigation";
 import { RootSiblingParent } from "react-native-root-siblings";
+import RootStackNavigation from "./src/navigation/RootStackNavigation";
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
       <StatusBar style="auto" />
       <NavigationContainer>
         <RootSiblingParent>
-          <AuthStackNavigation />
+          <RootStackNavigation />
         </RootSiblingParent>
       </NavigationContainer>
     </>
