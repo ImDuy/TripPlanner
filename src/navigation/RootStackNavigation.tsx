@@ -6,6 +6,7 @@ import { RootStackParamList } from "../utils/navigation-types";
 import TabNavigation from "./TabNavigation";
 import { CreateTripProvider } from "../context/CreateTripContext";
 import SelectTravelers from "../screens/home/create-trip/SelectTravelers";
+import SelectDate from "../screens/home/create-trip/SelectDate";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNavigation() {
@@ -33,13 +34,17 @@ export default function RootStackNavigation() {
           component={SearchPlace}
           options={{
             headerShown: true,
-
             title: "Where do you want to go?",
           }}
         />
         <Stack.Screen
           name="SelectTravelers"
           component={SelectTravelers}
+          options={{ headerShown: true, headerTitle: "" }}
+        />
+        <Stack.Screen
+          name="SelectDate"
+          component={SelectDate}
           options={{ headerShown: true, headerTitle: "" }}
         />
       </Stack.Navigator>

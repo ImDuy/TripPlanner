@@ -5,6 +5,7 @@ export type RootStackParamList = {
   TabNavigation: NavigatorScreenParams<TabParamList>;
   SearchPlace: undefined;
   SelectTravelers: undefined;
+  SelectDate: undefined;
 };
 export type AuthStackParamList = {
   LandingPage: undefined;

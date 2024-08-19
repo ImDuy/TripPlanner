@@ -1,21 +1,37 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import defaultStyles from "../../../constants/styles";
 import { SelectTravelersList } from "../../../constants/options";
 import OptionCardView from "../../../components/OptionCardView";
 import AppButton from "../../../components/AppButton";
 import { screenSize } from "../../../constants/sizes";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../../utils/navigation-types";
+import { CreateTripContext } from "../../../context/CreateTripContext";
 
 export default function SelectTravelers() {
-  const [selectedOptionId, setSelectedOptionId] = useState(0);
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const [selectedOptionTitle, setSelectedOptionTitle] = useState("");
+  const { setTripData } = useContext(CreateTripContext);
+
+  const handleContinuePress = () => {
+    setTripData((prevTripData: any) => {
+      return {
+        ...prevTripData,
+        travelerCount: selectedOptionTitle,
+      };
+    });
+    navigation.navigate("SelectDate");
+  };
+
   const renderOptions = () => {
     return SelectTravelersList.map((option) => (
       <OptionCardView
         key={option.id}
         option={option}
         containerStyle={{ marginBottom: 18 }}
-        onPress={() => setSelectedOptionId(option.id)}
-        selected={selectedOptionId === option.id}
+        onPress={() => setSelectedOptionTitle(option.title)}
+        selected={selectedOptionTitle === option.title}
       />
     ));
   };
@@ -34,7 +50,14 @@ export default function SelectTravelers() {
       </View>
 
       <View style={{ flex: 2 }}>
-        {selectedOptionId > 0 && <AppButton label="Continue" isFilled />}
+        {selectedOptionTitle && (
+          <AppButton
+            label="Continue"
+            labelStyle={{ fontSize: 18 }}
+            isFilled
+            onPress={handleContinuePress}
+          />
+        )}
       </View>
     </View>
   );

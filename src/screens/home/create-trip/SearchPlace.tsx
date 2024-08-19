@@ -8,7 +8,7 @@ import { CreateTripContext } from "../../../context/CreateTripContext";
 import { RootStackParamList } from "../../../utils/navigation-types";
 export default function SearchPlace() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const { tripData, setTripData } = useContext(CreateTripContext);
+  const { setTripData } = useContext(CreateTripContext);
 
   return (
     <View style={defaultStyles.screenContainer}>
