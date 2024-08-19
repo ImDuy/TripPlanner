@@ -40,7 +40,7 @@ export default function RootStackNavigation() {
         <Stack.Screen
           name="SelectTravelers"
           component={SelectTravelers}
-          options={{ headerTitle: "" }}
+          options={{ headerShown: true, headerTitle: "" }}
         />
       </Stack.Navigator>
     </CreateTripProvider>

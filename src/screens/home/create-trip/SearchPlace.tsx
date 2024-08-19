@@ -1,25 +1,28 @@
-import React, { useContext, useRef } from "react";
-import { StyleSheet, View } from "react-native";
-import {
-  GooglePlacesAutocomplete,
-  GooglePlacesAutocompleteRef,
-} from "react-native-google-places-autocomplete";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import React, { useContext } from "react";
+import { Button, StyleSheet, View } from "react-native";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import COLORS from "../../../constants/colors";
 import defaultStyles from "../../../constants/styles";
 import { CreateTripContext } from "../../../context/CreateTripContext";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../../utils/navigation-types";
 export default function SearchPlace() {
-  const ref = useRef<GooglePlacesAutocompleteRef>(null);
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { tripData, setTripData } = useContext(CreateTripContext);
 
   return (
     <View style={defaultStyles.screenContainer}>
+      <Button
+        title="Navigate"
+        onPress={() => navigation.navigate("SelectTravelers")}
+      />
       {/* Search Bar */}
       <GooglePlacesAutocomplete
-        ref={ref}
         placeholder="Search Places"
+        textInputProps={{
+          autoCorrect: false,
+          autoCapitalize: "words",
+        }}
         fetchDetails={true}
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
@@ -35,7 +38,7 @@ export default function SearchPlace() {
           navigation.navigate("SelectTravelers");
         }}
         query={{
-          key: "YOUR API KEY",
+          key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
           language: "en",
         }}
         styles={{
