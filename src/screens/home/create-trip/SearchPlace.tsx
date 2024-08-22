@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useContext } from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import COLORS from "../../../constants/colors";
 import defaultStyles from "../../../constants/styles";
@@ -12,21 +12,16 @@ export default function SearchPlace() {
 
   return (
     <View style={defaultStyles.screenContainer}>
-      <Button
-        title="Navigate"
-        onPress={() => navigation.navigate("SelectTravelers")}
-      />
-      {/* Search Bar */}
       <GooglePlacesAutocomplete
         placeholder="Search Places"
         textInputProps={{
           autoCorrect: false,
           autoCapitalize: "words",
         }}
+        debounce={200}
         fetchDetails={true}
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
-          console.log(data, details);
           setTripData({
             locationInfo: {
               name: data.description,
@@ -45,6 +40,7 @@ export default function SearchPlace() {
           textInputContainer: styles.inputContainer,
           textInput: styles.input,
         }}
+        onFail={(error) => console.log("error: " + error)}
       />
     </View>
   );

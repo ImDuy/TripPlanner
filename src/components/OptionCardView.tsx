@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   desc: {
     marginTop: 2,
     fontFamily: "outfit-regular",
-    fontSize: 17,
+    fontSize: screenSize.width < 380 ? 16 : 17,
     color: COLORS.gray,
   },
   icon: {

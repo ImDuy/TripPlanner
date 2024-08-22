@@ -6,6 +6,8 @@ export type RootStackParamList = {
   SearchPlace: undefined;
   SelectTravelers: undefined;
   SelectDate: undefined;
+  SelectBudget: undefined;
+  ReviewTrip: undefined;
 };
 export type AuthStackParamList = {
   LandingPage: undefined;

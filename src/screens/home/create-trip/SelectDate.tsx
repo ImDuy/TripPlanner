@@ -35,7 +35,7 @@ export default function SelectDate() {
         totalNumberOfDays: numOfDays,
       };
     });
-    navigation.navigate("SelectTravelers");
+    navigation.navigate("SelectBudget");
   };
 
   return (

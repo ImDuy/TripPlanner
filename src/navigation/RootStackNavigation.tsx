@@ -7,6 +7,8 @@ import TabNavigation from "./TabNavigation";
 import { CreateTripProvider } from "../context/CreateTripContext";
 import SelectTravelers from "../screens/home/create-trip/SelectTravelers";
 import SelectDate from "../screens/home/create-trip/SelectDate";
+import SelectBudget from "../screens/home/create-trip/SelectBudget";
+import ReviewTrip from "../screens/home/create-trip/ReviewTrip";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNavigation() {
@@ -45,6 +47,16 @@ export default function RootStackNavigation() {
         <Stack.Screen
           name="SelectDate"
           component={SelectDate}
+          options={{ headerShown: true, headerTitle: "" }}
+        />
+        <Stack.Screen
+          name="SelectBudget"
+          component={SelectBudget}
+          options={{ headerShown: true, headerTitle: "" }}
+        />
+        <Stack.Screen
+          name="ReviewTrip"
+          component={ReviewTrip}
           options={{ headerShown: true, headerTitle: "" }}
         />
       </Stack.Navigator>
