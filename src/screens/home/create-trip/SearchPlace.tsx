@@ -22,13 +22,16 @@ export default function SearchPlace() {
         fetchDetails={true}
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
-          setTripData({
-            locationInfo: {
-              name: data.description,
-              coordinate: details?.geometry.location,
-              // photoRef: details?.photos[0]?.photo_reference,
-              url: details?.url,
-            },
+          setTripData((preTripData) => {
+            return {
+              ...preTripData,
+              locationInfo: {
+                name: data.description,
+                coordinate: details?.geometry.location,
+                // photoRef: details?.photos[0]?.photo_reference,
+                url: details?.url,
+              },
+            };
           });
           navigation.navigate("SelectTravelers");
         }}

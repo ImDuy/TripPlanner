@@ -6,3 +6,22 @@ export function numberOfDays(start: Date, end: Date) {
   const diffDays = Math.round(differenceMs / oneDay);
   return diffDays + 1;
 }
+
+export function formatDate(date: Date) {
+  const monthName = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  return `${date.getDate()} ${monthName[date.getMonth()]}`;
+}

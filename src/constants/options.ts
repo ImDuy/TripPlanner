@@ -6,7 +6,7 @@ export type Option = {
   // people: string;
 };
 
-export const SelectTravelersList = [
+export const SelectTravelerOptions = [
   {
     id: 1,
     title: "Just Me",
@@ -37,7 +37,7 @@ export const SelectTravelersList = [
   },
 ];
 
-export const SelectBudgetList = [
+export const SelectBudgetOption = [
   {
     id: 1,
     title: "Cheap",

@@ -38,7 +38,14 @@ export default function OptionCardView({
           {option.desc}
         </Text>
       </View>
-      <Text style={styles.icon}>{option.icon}</Text>
+      <Text
+        style={[
+          styles.icon,
+          option.title === "Cheap" && { transform: [{ translateX: 8 }] },
+        ]}
+      >
+        {option.icon}
+      </Text>
     </TouchableOpacity>
   );
 }

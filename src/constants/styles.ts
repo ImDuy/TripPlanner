@@ -13,7 +13,7 @@ const defaultStyles = StyleSheet.create({
   headerTitle: {
     fontFamily: "outfit-bold",
     color: COLORS.primary,
-    fontSize: 30,
+    fontSize: 32,
   },
 });
 

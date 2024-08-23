@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useContext, useState } from "react";
-import { SelectBudgetList } from "../../../constants/options";
-import OptionCardView from "../../../components/OptionCardView";
-import defaultStyles from "../../../constants/styles";
-import { screenSize } from "../../../constants/sizes";
-import AppButton from "../../../components/AppButton";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../utils/navigation-types";
+import React, { useContext, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import AppButton from "../../../components/AppButton";
+import OptionCardView from "../../../components/OptionCardView";
+import { SelectBudgetOption } from "../../../constants/options";
+import defaultStyles from "../../../constants/styles";
 import { CreateTripContext } from "../../../context/CreateTripContext";
+import { RootStackParamList } from "../../../utils/navigation-types";
 
 export default function SelectBudget() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -24,7 +23,7 @@ export default function SelectBudget() {
     navigation.navigate("ReviewTrip");
   };
   const renderOptions = () => {
-    return SelectBudgetList.map((option) => (
+    return SelectBudgetOption.map((option) => (
       <OptionCardView
         key={option.id}
         option={option}
@@ -37,7 +36,7 @@ export default function SelectBudget() {
   return (
     <View style={defaultStyles.screenContainer}>
       <View style={{ flex: 1 }}>
-        <Text style={styles.header}>Budget</Text>
+        <Text style={defaultStyles.headerTitle}>Budget</Text>
       </View>
 
       <View style={{ flex: 6, justifyContent: "center" }}>
@@ -60,10 +59,6 @@ export default function SelectBudget() {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    fontFamily: "outfit-bold",
-    fontSize: 32,
-  },
   sectionTitle: {
     fontFamily: "outfit-bold",
     fontSize: 21,

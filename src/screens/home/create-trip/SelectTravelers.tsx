@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useContext, useState } from "react";
 import defaultStyles from "../../../constants/styles";
-import { SelectTravelersList } from "../../../constants/options";
+import { SelectTravelerOptions } from "../../../constants/options";
 import OptionCardView from "../../../components/OptionCardView";
 import AppButton from "../../../components/AppButton";
 import { screenSize } from "../../../constants/sizes";
@@ -18,14 +18,14 @@ export default function SelectTravelers() {
     setTripData((prevTripData: any) => {
       return {
         ...prevTripData,
-        travelerCount: selectedOptionTitle,
+        traveler: selectedOptionTitle,
       };
     });
     navigation.navigate("SelectDate");
   };
 
   const renderOptions = () => {
-    return SelectTravelersList.map((option) => (
+    return SelectTravelerOptions.map((option) => (
       <OptionCardView
         key={option.id}
         option={option}
@@ -39,7 +39,7 @@ export default function SelectTravelers() {
   return (
     <View style={defaultStyles.screenContainer}>
       <View style={{ flex: 1 }}>
-        <Text style={styles.header}>Who's Traveling?</Text>
+        <Text style={defaultStyles.headerTitle}>Who's Traveling?</Text>
       </View>
 
       <View style={{ flex: 10, justifyContent: "center" }}>
@@ -64,10 +64,6 @@ export default function SelectTravelers() {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    fontFamily: "outfit-bold",
-    fontSize: 32,
-  },
   sectionTitle: {
     fontFamily: "outfit-bold",
     fontSize: 22,
