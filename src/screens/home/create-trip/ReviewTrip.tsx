@@ -5,7 +5,7 @@ import AppButton from "../../../components/AppButton";
 import defaultStyles from "../../../constants/styles";
 import { CreateTripContext } from "../../../context/CreateTripContext";
 import { RootStackParamList } from "../../../utils/navigation-types";
-import ReviewTripOption from "../../../components/ReviewTripOption";
+import ReviewTripOption from "../../../components/create-trip/ReviewTripOption";
 import { formatDate } from "../../../utils/helpers";
 
 export default function ReviewTrip() {

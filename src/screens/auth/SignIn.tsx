@@ -6,7 +6,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Toast from "react-native-root-toast";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AppButton from "../../components/AppButton";
-import AuthTextInput from "../../components/AuthTextInput";
+import AuthTextInput from "../../components/auth/AuthTextInput";
 import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
 import { auth } from "../../utils/firebase-config";

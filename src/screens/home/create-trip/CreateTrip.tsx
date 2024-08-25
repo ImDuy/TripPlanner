@@ -2,7 +2,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect } from "react";
 import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import PleaseWaitTextHeader from "../../../components/PleaseWaitTextHeader";
+import PleaseWaitTextHeader from "../../../components/create-trip/PleaseWaitTextHeader";
 import COLORS from "../../../constants/colors";
 import IMAGES from "../../../constants/images";
 import { screenSize } from "../../../constants/sizes";
@@ -17,10 +17,17 @@ export default function CreateTrip() {
   const { top } = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { tripData } = useContext(CreateTripContext);
+  const user = auth.currentUser;
 
   useEffect(() => {
     const loadingTripFromAI = async () => {
-      if (tripData.locationInfo) {
+      if (
+        tripData.locationInfo &&
+        tripData.totalNumberOfDays &&
+        tripData.traveler &&
+        tripData.budget &&
+        user
+      ) {
         const tripRes = await generateAiTrip(
           tripData.locationInfo.name,
           tripData.totalNumberOfDays,
@@ -31,7 +38,7 @@ export default function CreateTrip() {
         const docId = Date.now().toString();
         await setDoc(doc(db, "UserTrips", docId), {
           docId: docId,
-          userEmail: auth.currentUser?.email,
+          userId: user.uid,
           aiTripData: tripRes, // AI result
           userTripOption: tripData, // user option for trip
         });
@@ -39,7 +46,7 @@ export default function CreateTrip() {
       } else
         Alert.alert(
           "Error",
-          "Could not find the location info. Please try again",
+          "Not enough data to generate trip or User is not authenticated.",
           [
             {
               text: "OK",
@@ -51,7 +58,7 @@ export default function CreateTrip() {
     };
 
     loadingTripFromAI();
-  }, [tripData, navigation]);
+  }, [tripData, navigation, user]);
 
   return (
     <View

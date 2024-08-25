@@ -2,7 +2,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useContext, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import AppButton from "../../../components/AppButton";
-import OptionCardView from "../../../components/OptionCardView";
+import OptionCardView from "../../../components/create-trip/OptionCardView";
 import { SelectBudgetOption } from "../../../constants/options";
 import defaultStyles from "../../../constants/styles";
 import { CreateTripContext } from "../../../context/CreateTripContext";

@@ -7,9 +7,9 @@ import {
   ViewStyle,
 } from "react-native";
 import React from "react";
-import { Option } from "../constants/options";
-import COLORS from "../constants/colors";
-import { screenSize } from "../constants/sizes";
+import { Option } from "../../constants/options";
+import COLORS from "../../constants/colors";
+import { screenSize } from "../../constants/sizes";
 
 interface Props {
   containerStyle?: StyleProp<ViewStyle>;

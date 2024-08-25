@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { AuthStackParamList } from "../../utils/navigation-types";
 import defaultStyles from "../../constants/styles";
-import AuthTextInput from "../../components/AuthTextInput";
+import AuthTextInput from "../../components/auth/AuthTextInput";
 import AppButton from "../../components/AppButton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { createUserWithEmailAndPassword } from "firebase/auth";

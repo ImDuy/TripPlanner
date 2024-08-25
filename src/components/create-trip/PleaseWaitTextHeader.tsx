@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import COLORS from "../constants/colors";
-import defaultStyles from "../constants/styles";
+import { Text } from "react-native";
+import COLORS from "../../constants/colors";
+import defaultStyles from "../../constants/styles";
 
 export default function PleaseWaitTextHeader() {
   const [headerDotOpacity, setHeaderDotOpacity] = useState({

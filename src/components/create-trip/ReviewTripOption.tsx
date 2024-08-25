@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 import React from "react";
-import { Option } from "../constants/options";
-import COLORS from "../constants/colors";
+import { Option } from "../../constants/options";
+import COLORS from "../../constants/colors";
 
 interface Props {
   containerStyle?: StyleProp<ViewStyle>;

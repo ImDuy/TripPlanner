@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useContext, useState } from "react";
 import defaultStyles from "../../../constants/styles";
 import { SelectTravelerOptions } from "../../../constants/options";
-import OptionCardView from "../../../components/OptionCardView";
+import OptionCardView from "../../../components/create-trip/OptionCardView";
 import AppButton from "../../../components/AppButton";
 import { screenSize } from "../../../constants/sizes";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
