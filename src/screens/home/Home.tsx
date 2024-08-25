@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeHeader from "../../components/home/HomeHeader";
-import NoTripPlanView from "../../components/home/NoTripPlanView";
+import AddNewTripCard from "../../components/home/AddNewTripCard";
 import defaultStyles from "../../constants/styles";
 import { auth, db } from "../../utils/firebase-config";
 import { RootStackParamList } from "../../utils/navigation-types";
+import UserTripList from "../../components/home/UserTripList";
+import AnimatedLoadingIcon from "../../components/AnimatedLoadingIcon";
+import COLORS from "../../constants/colors";
 
 export default function Home() {
   const { top } = useSafeAreaInsets();
@@ -30,7 +33,7 @@ export default function Home() {
         console.log(doc.id, " => ", doc.data());
         setUserTrips([doc.data()]);
       });
-      setIsFetching(false);
+      // setIsFetching(false);
     };
     fetchUserTrips();
   }, [user]);
@@ -38,13 +41,26 @@ export default function Home() {
   const handleAddBtnPress = () => {
     navigation.navigate("SearchPlace");
   };
+  const renderTripList = () => {
+    return userTrips.length ? (
+      <UserTripList />
+    ) : (
+      <AddNewTripCard onAddNewTripPlan={handleAddBtnPress} />
+    );
+  };
+
   return (
     <View style={{ ...defaultStyles.screenContainer, paddingTop: top }}>
-      {/* Header */}
       <HomeHeader onAddNewTripPlan={handleAddBtnPress} />
-
-      {/* Content */}
-      <NoTripPlanView onAddNewTripPlan={handleAddBtnPress} />
+      {isFetching ? (
+        <AnimatedLoadingIcon
+          size={60}
+          color={COLORS.primary}
+          containerStyle={{ alignSelf: "center", marginVertical: "auto" }}
+        />
+      ) : (
+        renderTripList()
+      )}
     </View>
   );
 }

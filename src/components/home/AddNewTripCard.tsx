@@ -7,7 +7,7 @@ import COLORS from "../../constants/colors";
 interface Props {
   onAddNewTripPlan: () => void;
 }
-export default function NoTripPlanView({ onAddNewTripPlan }: Props) {
+export default function AddNewTripCard({ onAddNewTripPlan }: Props) {
   return (
     <View style={styles.contentContainer}>
       <Ionicons name="location-sharp" size={32} color={COLORS.primary} />
