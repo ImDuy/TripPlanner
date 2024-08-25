@@ -49,7 +49,7 @@ export default function SignIn() {
       .then((userCredential) => {
         // Signed in
         rootNavigation.navigate("TabNavigation", {
-          screen: "HomeStackNavigation",
+          screen: "Home",
         });
       })
       .catch((error) => {

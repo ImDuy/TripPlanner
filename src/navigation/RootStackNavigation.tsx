@@ -9,7 +9,8 @@ import SelectTravelers from "../screens/home/create-trip/SelectTravelers";
 import SelectDate from "../screens/home/create-trip/SelectDate";
 import SelectBudget from "../screens/home/create-trip/SelectBudget";
 import ReviewTrip from "../screens/home/create-trip/ReviewTrip";
-import CreateTripLoading from "../screens/home/create-trip/CreateTripLoading";
+import CreateTrip from "../screens/home/create-trip/CreateTrip";
+import AuthStackNavigation from "./AuthStackNavigation";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNavigation() {
@@ -30,8 +31,8 @@ export default function RootStackNavigation() {
           contentStyle: { backgroundColor: COLORS.white },
         }}
       >
-        {/* <Stack.Screen name="AuthStack" component={AuthStackNavigation} /> */}
-        {/* <Stack.Screen name="TabNavigation" component={TabNavigation} />
+        <Stack.Screen name="AuthStack" component={AuthStackNavigation} />
+        <Stack.Screen name="TabNavigation" component={TabNavigation} />
         <Stack.Screen
           name="SearchPlace"
           component={SearchPlace}
@@ -59,8 +60,8 @@ export default function RootStackNavigation() {
           name="ReviewTrip"
           component={ReviewTrip}
           options={{ headerShown: true, headerTitle: "" }}
-        /> */}
-        <Stack.Screen name="CreateTripLoading" component={CreateTripLoading} />
+        />
+        <Stack.Screen name="CreateTrip" component={CreateTrip} />
       </Stack.Navigator>
     </CreateTripProvider>
   );

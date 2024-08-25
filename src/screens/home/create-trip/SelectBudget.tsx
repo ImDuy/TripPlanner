@@ -14,7 +14,7 @@ export default function SelectBudget() {
   const { setTripData } = useContext(CreateTripContext);
 
   const handleContinuePress = () => {
-    setTripData((prevTripData: any) => {
+    setTripData((prevTripData) => {
       return {
         ...prevTripData,
         budget: selectedOptionTitle,

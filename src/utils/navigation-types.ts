@@ -8,7 +8,7 @@ export type RootStackParamList = {
   SelectDate: undefined;
   SelectBudget: undefined;
   ReviewTrip: undefined;
-  CreateTripLoading: undefined;
+  CreateTrip: undefined;
 };
 export type AuthStackParamList = {
   LandingPage: undefined;
