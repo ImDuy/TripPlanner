@@ -3,14 +3,14 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import HomeHeader from "../../components/home/HomeHeader";
+import AnimatedLoadingIcon from "../../components/AnimatedLoadingIcon";
 import AddNewTripCard from "../../components/home/AddNewTripCard";
+import HomeHeader from "../../components/home/HomeHeader";
+import UserTripList from "../../components/home/UserTripList";
+import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
 import { auth, db } from "../../utils/firebase-config";
 import { RootStackParamList } from "../../utils/navigation-types";
-import UserTripList from "../../components/home/UserTripList";
-import AnimatedLoadingIcon from "../../components/AnimatedLoadingIcon";
-import COLORS from "../../constants/colors";
 
 export default function Home() {
   const { top } = useSafeAreaInsets();
@@ -30,10 +30,9 @@ export default function Home() {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
         setUserTrips([doc.data()]);
       });
-      // setIsFetching(false);
+      setIsFetching(false);
     };
     fetchUserTrips();
   }, [user]);
@@ -43,14 +42,20 @@ export default function Home() {
   };
   const renderTripList = () => {
     return userTrips.length ? (
-      <UserTripList />
+      <UserTripList userTrips={userTrips} />
     ) : (
       <AddNewTripCard onAddNewTripPlan={handleAddBtnPress} />
     );
   };
 
   return (
-    <View style={{ ...defaultStyles.screenContainer, paddingTop: top }}>
+    <View
+      style={{
+        ...defaultStyles.screenContainer,
+        paddingTop: top,
+        paddingBottom: 4,
+      }}
+    >
       <HomeHeader onAddNewTripPlan={handleAddBtnPress} />
       {isFetching ? (
         <AnimatedLoadingIcon
@@ -64,5 +69,3 @@ export default function Home() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

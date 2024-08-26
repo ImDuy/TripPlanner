@@ -9,4 +9,5 @@ export const screenPadding = {
   horizontal: 24,
 };
 
+export const headerHeight = 60;
 export const tabBarHeight = 56;

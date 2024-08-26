@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import COLORS from "../../constants/colors";
-import { screenPadding, screenSize } from "../../constants/sizes";
+import { headerHeight, screenPadding, screenSize } from "../../constants/sizes";
 
 interface Props {
   onAddNewTripPlan: () => void;
@@ -16,9 +16,11 @@ export default function HomeHeader({ onAddNewTripPlan }: Props) {
       style={{
         ...styles.headerContainer,
         position: "absolute",
-        top: screenSize.height < 700 ? top + 8 : top + 12,
+        top: top,
         left: screenPadding.horizontal,
         right: screenPadding.horizontal,
+        height: headerHeight,
+        alignItems: "center",
         zIndex: 100,
       }}
     >
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    backgroundColor: COLORS.white,
   },
   headerTitle: {
     fontFamily: "outfit-bold",

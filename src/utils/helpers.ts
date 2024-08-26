@@ -9,7 +9,7 @@ export function numberOfDays(start: Date, end: Date) {
   return diffDays + 1;
 }
 
-export function formatDate(date: Date) {
+export function formatDateMonth(date: Date) {
   const monthName = [
     "Jan",
     "Feb",
@@ -26,6 +26,27 @@ export function formatDate(date: Date) {
   ];
 
   return `${date.getDate()} ${monthName[date.getMonth()]}`;
+}
+
+export function formatDateMonthYear(date: Date) {
+  const monthName = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  return `${date.getDate()} ${
+    monthName[date.getMonth()]
+  } ${date.getFullYear()}`;
 }
 
 export async function generateAiTrip(

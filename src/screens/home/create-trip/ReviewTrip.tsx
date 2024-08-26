@@ -6,7 +6,7 @@ import defaultStyles from "../../../constants/styles";
 import { CreateTripContext } from "../../../context/CreateTripContext";
 import { RootStackParamList } from "../../../utils/navigation-types";
 import ReviewTripOption from "../../../components/create-trip/ReviewTripOption";
-import { formatDate } from "../../../utils/helpers";
+import { formatDateMonth } from "../../../utils/helpers";
 
 export default function ReviewTrip() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -21,7 +21,7 @@ export default function ReviewTrip() {
     {
       id: 2,
       title: "Travel Date",
-      desc: `${formatDate(tripData.startDate)} - ${formatDate(
+      desc: `${formatDateMonth(tripData.startDate)} - ${formatDateMonth(
         tripData.endDate
       )} (${tripData.totalNumberOfDays} days)`,
       icon: "📅",
