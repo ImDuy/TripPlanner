@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import COLORS from "../../constants/colors";
-import { headerHeight, screenPadding, screenSize } from "../../constants/sizes";
+import { headerHeight, screenPadding } from "../../constants/sizes";
 
 interface Props {
   onAddNewTripPlan: () => void;

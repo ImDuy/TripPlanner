@@ -1,11 +1,21 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import {
+  GooglePlaceDetail,
+  GooglePlacesAutocomplete,
+} from "react-native-google-places-autocomplete";
 import COLORS from "../../../constants/colors";
 import defaultStyles from "../../../constants/styles";
 import { CreateTripContext } from "../../../context/CreateTripContext";
 import { RootStackParamList } from "../../../utils/navigation-types";
+
+interface GooglePlaceDetailWithPhoto extends GooglePlaceDetail {
+  photos: {
+    photo_reference: string;
+  }[];
+}
+
 export default function SearchPlace() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { setTripData } = useContext(CreateTripContext);
@@ -28,7 +38,8 @@ export default function SearchPlace() {
               locationInfo: {
                 name: data.description,
                 coordinate: details?.geometry.location,
-                // photoRef: details?.photos[0]?.photo_reference,
+                photoRef: (details as GooglePlaceDetailWithPhoto)?.photos[0]
+                  ?.photo_reference,
                 url: details?.url,
               },
             };
