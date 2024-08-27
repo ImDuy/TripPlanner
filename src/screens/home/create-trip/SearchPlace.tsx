@@ -32,9 +32,9 @@ export default function SearchPlace() {
         fetchDetails={true}
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
-          setTripData((preTripData) => {
+          setTripData((prevTripData) => {
             return {
-              ...preTripData,
+              ...prevTripData,
               locationInfo: {
                 name: data.description,
                 coordinate: details?.geometry.location,

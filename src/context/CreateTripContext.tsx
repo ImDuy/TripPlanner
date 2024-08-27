@@ -5,6 +5,7 @@ export type TripData = {
   locationInfo: {
     name: string;
     coordinate?: Point;
+    photoRef?: string;
     url?: string;
   };
   traveler: string;

@@ -9,16 +9,26 @@ interface Props {
   item: any;
 }
 export default function LatestTripItem({ item }: Props) {
+  if (!item.userTripOption) return null;
   return (
     <>
-      <Image source={IMAGES.default_trip_thumbnail} style={styles.thumbnail} />
-      <Text style={styles.title}>{item.userTripOption?.locationInfo.name}</Text>
+      <Image
+        source={
+          item.userTripOption.locationInfo.photoRef
+            ? {
+                uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${item.userTripOption.locationInfo.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
+              }
+            : IMAGES.default_trip_thumbnail
+        }
+        style={styles.thumbnail}
+      />
+      <Text style={styles.title}>{item.userTripOption.locationInfo.name}</Text>
       <View style={styles.subTitleContainer}>
         <Text style={styles.subTitleText}>
-          {formatDateMonthYear(item.userTripOption?.startDate.toDate())}
+          {formatDateMonthYear(item.userTripOption.startDate.toDate())}
         </Text>
         <Text style={styles.subTitleText}>
-          🚌 {item.userTripOption?.traveler}
+          🚌 {item.userTripOption.traveler}
         </Text>
       </View>
       <AppButton

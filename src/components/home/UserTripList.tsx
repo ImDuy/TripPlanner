@@ -51,7 +51,13 @@ const TripItem = ({ item }: { item: any }) => {
     >
       <View style={styles.itemContainer}>
         <Image
-          source={IMAGES.default_trip_thumbnail}
+          source={
+            item.userTripOption.locationInfo.photoRef
+              ? {
+                  uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${item.userTripOption.locationInfo.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
+                }
+              : IMAGES.default_trip_thumbnail
+          }
           style={styles.itemThumbnail}
         />
         <View style={styles.itemTitleContainer}>
