@@ -1,5 +1,12 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  documentId,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -23,14 +30,16 @@ export default function Home() {
     const fetchUserTrips = async () => {
       if (!user) return;
       setIsFetching(true);
+      setUserTrips([]);
       const q = query(
         collection(db, "UserTrips"),
-        where("userId", "==", user.uid)
+        where("userId", "==", user.uid),
+        orderBy(documentId(), "desc")
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        setUserTrips([doc.data()]);
+        setUserTrips((prevState) => [...prevState, doc.data()]);
       });
       setIsFetching(false);
     };
