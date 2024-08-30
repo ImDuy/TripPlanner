@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -8,6 +8,7 @@ import Discover from "../screens/Discover";
 import Home from "../screens/home/Home";
 import Profile from "../screens/Profile";
 import { TabParamList } from "../utils/navigation-types";
+import { StyleSheet, View } from "react-native";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 export default function TabNavigation() {
@@ -18,15 +19,15 @@ export default function TabNavigation() {
         headerShown: false,
         lazy: false,
         // bottom tab bar
-        tabBarActiveTintColor: COLORS.white,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: COLORS.primary,
         tabBarLabelStyle: {
           fontFamily: "outfit-regular",
           fontSize: 14,
           marginBottom: 2,
         },
         tabBarStyle: {
-          backgroundColor: COLORS.primary,
-          borderTopWidth: 0,
+          backgroundColor: COLORS.white,
 
           height: tabBarHeight + insets.bottom,
           paddingTop: 2,
@@ -38,9 +39,15 @@ export default function TabNavigation() {
         name="Home"
         component={Home}
         options={{
-          title: "My Trip",
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="location-sharp" size={24} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={{
+                ...styles.tabIconWithBottomIndicator,
+                borderBottomColor: focused ? color : "transparent",
+              }}
+            >
+              <AntDesign name="home" size={26} color={color} />
+            </View>
           ),
         }}
       />
@@ -48,8 +55,15 @@ export default function TabNavigation() {
         name="Discover"
         component={Discover}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="globe-sharp" size={24} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={{
+                ...styles.tabIconWithBottomIndicator,
+                borderBottomColor: focused ? color : "transparent",
+              }}
+            >
+              <AntDesign name="search1" size={24} color={color} />
+            </View>
           ),
         }}
       />
@@ -57,11 +71,27 @@ export default function TabNavigation() {
         name="Profile"
         component={Profile}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="person-circle-outline" size={28} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={{
+                ...styles.tabIconWithBottomIndicator,
+                borderBottomColor: focused ? color : "transparent",
+              }}
+            >
+              <AntDesign name="user" size={26} color={color} />
+            </View>
           ),
         }}
       />
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  tabIconWithBottomIndicator: {
+    borderBottomWidth: 2,
+    height: "80%",
+    justifyContent: "center",
+    paddingHorizontal: 4,
+  },
+});

@@ -1,14 +1,6 @@
-import {
-  ScrollView,
-  ScrollViewProps,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import React, { ReactNode, useEffect, useRef } from "react";
-import IMAGES from "../../constants/images";
 import { useNavigation } from "@react-navigation/native";
-import COLORS from "../../constants/colors";
+import React, { ReactNode, useEffect } from "react";
+import { ScrollViewProps, StyleSheet, Text } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -17,6 +9,8 @@ import Animated, {
   useScrollViewOffset,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import COLORS from "../../constants/colors";
+import IMAGES from "../../constants/images";
 
 interface Props extends ScrollViewProps {
   headerTitle?: string;
