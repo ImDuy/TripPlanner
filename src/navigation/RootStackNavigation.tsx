@@ -11,6 +11,7 @@ import SelectBudget from "../screens/home/create-trip/SelectBudget";
 import ReviewTrip from "../screens/home/create-trip/ReviewTrip";
 import CreateTrip from "../screens/home/create-trip/CreateTrip";
 import AuthStackNavigation from "./AuthStackNavigation";
+import TripDetails from "../screens/home/trip-details/TripDetails";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNavigation() {
@@ -21,7 +22,6 @@ export default function RootStackNavigation() {
           headerShown: false,
           headerBackTitleVisible: false,
           headerShadowVisible: false,
-          headerStyle: { backgroundColor: COLORS.white },
           headerTintColor: COLORS.primary,
           headerTitleStyle: {
             color: COLORS.primary,
@@ -62,6 +62,15 @@ export default function RootStackNavigation() {
           options={{ headerShown: true, headerTitle: "" }}
         />
         <Stack.Screen name="CreateTrip" component={CreateTrip} />
+        <Stack.Screen
+          name="TripDetails"
+          component={TripDetails}
+          options={{
+            headerShown: true,
+            headerTitle: "",
+            headerTransparent: true,
+          }}
+        />
       </Stack.Navigator>
     </CreateTripProvider>
   );

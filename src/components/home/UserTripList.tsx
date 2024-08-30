@@ -14,18 +14,30 @@ import IMAGES from "../../constants/images";
 import { headerHeight } from "../../constants/sizes";
 import { formatDateMonthYear } from "../../utils/helpers";
 import LatestTripItem from "./LatestTripItem";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../utils/navigation-types";
+import { TripPlan } from "../../utils/types";
 
 interface Props {
-  userTrips: any[];
+  userTrips: TripPlan[];
 }
 export default function UserTripList({ userTrips }: Props) {
   const { top } = useSafeAreaInsets();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const onTripPlanShowDetails = (item: TripPlan) => {
+    navigation.navigate("TripDetails", { tripData: item });
+  };
+
   return (
     <ScrollView
       contentContainerStyle={{ paddingTop: top + headerHeight }}
       showsVerticalScrollIndicator={false}
     >
-      <LatestTripItem item={userTrips[0]} />
+      <LatestTripItem
+        item={userTrips[0]}
+        onShowPlanDetails={onTripPlanShowDetails}
+      />
       {userTrips.length > 1 && (
         <>
           <Text style={styles.olderPlanText}>Older Plan(s)</Text>
@@ -33,7 +45,9 @@ export default function UserTripList({ userTrips }: Props) {
             scrollEnabled={false}
             data={userTrips.slice(1)}
             keyExtractor={(item) => item.docId}
-            renderItem={({ item }) => <TripItem item={item} />}
+            renderItem={({ item }) => (
+              <TripItem item={item} onItemPress={onTripPlanShowDetails} />
+            )}
           />
         </>
       )}
@@ -41,13 +55,19 @@ export default function UserTripList({ userTrips }: Props) {
   );
 }
 
-const TripItem = ({ item }: { item: any }) => {
+const TripItem = ({
+  item,
+  onItemPress,
+}: {
+  item: TripPlan;
+  onItemPress: (item: TripPlan) => void;
+}) => {
   return (
     <TouchableHighlight
       style={{ borderRadius: 12 }}
       activeOpacity={0.6}
       underlayColor={COLORS.touchable_active_underlay}
-      onPress={() => {}}
+      onPress={() => onItemPress(item)}
     >
       <View style={styles.itemContainer}>
         <Image

@@ -4,11 +4,13 @@ import COLORS from "../../constants/colors";
 import IMAGES from "../../constants/images";
 import { formatDateMonthYear } from "../../utils/helpers";
 import AppButton from "../AppButton";
+import { TripPlan } from "../../utils/types";
 
 interface Props {
-  item: any;
+  item: TripPlan;
+  onShowPlanDetails: (item: TripPlan) => void;
 }
-export default function LatestTripItem({ item }: Props) {
+export default function LatestTripItem({ item, onShowPlanDetails }: Props) {
   if (!item.userTripOption) return null;
   return (
     <>
@@ -35,6 +37,7 @@ export default function LatestTripItem({ item }: Props) {
         label="See your plan"
         isFilled
         containerStyle={{ height: 50, borderRadius: 12 }}
+        onPress={() => onShowPlanDetails(item)}
       />
     </>
   );
@@ -43,8 +46,8 @@ export default function LatestTripItem({ item }: Props) {
 const styles = StyleSheet.create({
   thumbnail: {
     width: "100%",
-    height: 240,
-    borderRadius: 12,
+    height: 225,
+    borderRadius: 14,
   },
   title: {
     color: COLORS.primary,

@@ -7,7 +7,10 @@ import AppButton from "../../../components/AppButton";
 import { screenSize } from "../../../constants/sizes";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../../utils/navigation-types";
-import { CreateTripContext } from "../../../context/CreateTripContext";
+import {
+  CreateTripContext,
+  TripData,
+} from "../../../context/CreateTripContext";
 
 export default function SelectTravelers() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -15,7 +18,7 @@ export default function SelectTravelers() {
   const { setTripData } = useContext(CreateTripContext);
 
   const handleContinuePress = () => {
-    setTripData((prevTripData: any) => {
+    setTripData((prevTripData: TripData) => {
       return {
         ...prevTripData,
         traveler: selectedOptionTitle,

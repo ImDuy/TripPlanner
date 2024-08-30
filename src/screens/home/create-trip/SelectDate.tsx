@@ -6,7 +6,10 @@ import COLORS from "../../../constants/colors";
 import AppButton from "../../../components/AppButton";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../../utils/navigation-types";
-import { CreateTripContext } from "../../../context/CreateTripContext";
+import {
+  CreateTripContext,
+  TripData,
+} from "../../../context/CreateTripContext";
 import { numberOfDays } from "../../../utils/helpers";
 import Toast from "react-native-root-toast";
 
@@ -27,7 +30,7 @@ export default function SelectDate() {
       return;
     }
     const numOfDays = numberOfDays(startDate, endDate);
-    setTripData((prevTripData: any) => {
+    setTripData((prevTripData: TripData) => {
       return {
         ...prevTripData,
         startDate,

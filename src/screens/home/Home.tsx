@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AnimatedLoadingIcon from "../../components/AnimatedLoadingIcon";
 import AddNewTripCard from "../../components/home/AddNewTripCard";
@@ -18,12 +18,13 @@ import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
 import { auth, db } from "../../utils/firebase-config";
 import { RootStackParamList } from "../../utils/navigation-types";
+import { TripPlan } from "../../utils/types";
 
 export default function Home() {
   const { top } = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const user = auth.currentUser;
-  const [userTrips, setUserTrips] = useState<any[]>([]);
+  const [userTrips, setUserTrips] = useState<TripPlan[]>([]);
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function Home() {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        setUserTrips((prevState) => [...prevState, doc.data()]);
+        setUserTrips((prevState) => [...prevState, doc.data() as TripPlan]);
       });
       setIsFetching(false);
     };

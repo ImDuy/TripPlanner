@@ -65,3 +65,11 @@ export async function generateAiTrip(
   const result = await chatSession.sendMessage(AI_PROMPT);
   return JSON.parse(result.response.text());
 }
+
+export async function googlePlaceSearchByText(placeName: string) {
+  const resp = await fetch(
+    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeName}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`
+  );
+
+  return resp.json();
+}

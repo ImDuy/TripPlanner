@@ -14,12 +14,12 @@ export type TripData = {
   totalNumberOfDays: number;
   budget: string;
 };
-type TripDateContext = {
+type TripDataContext = {
   tripData: TripData;
   setTripData: React.Dispatch<React.SetStateAction<TripData>>;
 };
-export const CreateTripContext = createContext<TripDateContext>(
-  {} as TripDateContext
+export const CreateTripContext = createContext<TripDataContext>(
+  {} as TripDataContext
 );
 export const CreateTripProvider = ({ children }: { children: ReactNode }) => {
   const [tripData, setTripData] = useState<TripData>({} as TripData);
