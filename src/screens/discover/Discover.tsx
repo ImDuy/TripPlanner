@@ -1,12 +1,12 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import defaultStyles from "../../constants/styles";
-import ScreenHeader from "../../components/ScreenHeader";
-import COLORS from "../../constants/colors";
-import TopPlacesCarousel from "../../components/discover/TopPlacesCarousel";
-import { headerHeight } from "../../constants/sizes";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import PopularList from "../../components/discover/PopularList";
+import TopPlacesCarousel from "../../components/discover/TopPlacesCarousel";
+import ScreenHeader from "../../components/ScreenHeader";
+import COLORS from "../../constants/colors";
+import { headerHeight } from "../../constants/sizes";
+import defaultStyles from "../../constants/styles";
 
 export default function Discover() {
   const { top } = useSafeAreaInsets();

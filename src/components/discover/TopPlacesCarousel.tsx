@@ -1,3 +1,4 @@
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   FlatList,
@@ -7,10 +8,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { TOP_PLACES } from "../../utils/data";
-import { DiscoverPlace } from "../../utils/types";
 import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
+import { TOP_PLACES } from "../../utils/data";
+import { RootStackParamList } from "../../utils/navigation-types";
+import { DiscoverPlace } from "../../utils/types";
 
 const CARD_WIDTH = 280;
 const CARD_SPACING = 20;
@@ -30,8 +32,12 @@ export default function TopPlacesCarousel() {
 }
 
 const TopPlaceCard = ({ item }: { item: DiscoverPlace }) => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
-    <TouchableOpacity style={[styles.cardImg, defaultStyles.shadowDark]}>
+    <TouchableOpacity
+      style={[styles.cardImg, defaultStyles.shadowDark]}
+      onPress={() => navigation.navigate("PlaceDetails", { placeItem: item })}
+    >
       <Image source={item.image} style={styles.cardImg} />
 
       <View style={styles.cardInfoContainer}>

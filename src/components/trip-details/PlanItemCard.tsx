@@ -21,7 +21,7 @@ export default function PlanItemCard({
   const [photoRef, setPhotoRef] = useState<string>();
 
   useEffect(() => {
-    googlePlaceSearchByText(name).then((result) => {
+    googlePlaceSearchByText(name)?.then((result) => {
       setPhotoRef(result.results[0]?.photos[0]?.photo_reference);
     });
   }, [name]);

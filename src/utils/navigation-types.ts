@@ -1,5 +1,5 @@
 import { NavigatorScreenParams } from "@react-navigation/native";
-import { TripPlan } from "./types";
+import { DiscoverPlace, TripPlan } from "./types";
 
 export type RootStackParamList = {
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
@@ -11,6 +11,7 @@ export type RootStackParamList = {
   ReviewTrip: undefined;
   CreateTrip: undefined;
   TripDetails: { tripData: TripPlan };
+  PlaceDetails: { placeItem: DiscoverPlace };
 };
 export type AuthStackParamList = {
   LandingPage: undefined;

@@ -12,6 +12,7 @@ import ReviewTrip from "../screens/home/create-trip/ReviewTrip";
 import CreateTrip from "../screens/home/create-trip/CreateTrip";
 import AuthStackNavigation from "./AuthStackNavigation";
 import TripDetails from "../screens/home/trip-details/TripDetails";
+import PlaceDetails from "../screens/discover/place-details/PlaceDetails";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNavigation() {
@@ -69,6 +70,16 @@ export default function RootStackNavigation() {
             headerShown: true,
             headerTitle: "",
             headerTransparent: true,
+          }}
+        />
+        <Stack.Screen
+          name="PlaceDetails"
+          component={PlaceDetails}
+          options={{
+            headerShown: true,
+            headerTitle: "",
+            headerTransparent: true,
+            headerTintColor: COLORS.white,
           }}
         />
       </Stack.Navigator>

@@ -11,17 +11,14 @@ import COLORS from "../../constants/colors";
 import { PLACES } from "../../utils/data";
 import { DiscoverPlace } from "../../utils/types";
 import defaultStyles from "../../constants/styles";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../utils/navigation-types";
+import ListHeaderWithSeeAll from "../ListHeaderWithSeeAll";
 
 export default function PopularList() {
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>Popular</Text>
-        <TouchableOpacity>
-          <Text style={styles.headerSubTitle}>See All</Text>
-        </TouchableOpacity>
-      </View>
-
+      <ListHeaderWithSeeAll title="Popular" />
       <FlatList
         scrollEnabled={false}
         data={PLACES}
@@ -38,10 +35,14 @@ export default function PopularList() {
 }
 
 const PopularCard = ({ item }: { item: DiscoverPlace }) => {
-  return (
-    <TouchableOpacity style={[styles.cardContainer, defaultStyles.shadowLight]}>
-      <Image source={item.image} style={styles.cardThumbnail} />
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+  return (
+    <TouchableOpacity
+      style={[styles.cardContainer, defaultStyles.shadowLight]}
+      onPress={() => navigation.navigate("PlaceDetails", { placeItem: item })}
+    >
+      <Image source={item.image} style={styles.cardThumbnail} />
       <View style={styles.cardInfoContainer}>
         <Text style={styles.cardTitle} numberOfLines={1}>
           {item.title}
@@ -58,23 +59,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 24,
   },
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  headerTitle: {
-    color: COLORS.primary,
-    fontFamily: "outfit-bold",
-    fontSize: 24,
-  },
-  headerSubTitle: {
-    color: COLORS.gray,
-    fontFamily: "outfit-medium",
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-
   cardContainer: {
     width: "48%",
     height: 220,

@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { RootSiblingParent } from "react-native-root-siblings";
 import RootStackNavigation from "./src/navigation/RootStackNavigation";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -28,9 +29,11 @@ export default function App() {
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <RootSiblingParent>
-          <RootStackNavigation />
-        </RootSiblingParent>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <RootSiblingParent>
+            <RootStackNavigation />
+          </RootSiblingParent>
+        </GestureHandlerRootView>
       </NavigationContainer>
     </>
   );

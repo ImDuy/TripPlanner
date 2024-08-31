@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 8,
     borderRadius: 12,
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: COLORS.light_gray,
   },
   innerContainer: {

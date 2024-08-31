@@ -29,4 +29,30 @@ export type DiscoverPlace = {
   title: string;
   location: string;
   description: string;
+  rating: number;
+  reviews: DiscoverReview[];
+  hotels: DiscoverHotel[];
+};
+
+export type DiscoverHotel = {
+  id: number;
+  title: string;
+  image: any;
+  location: string;
+  rating: number;
+  pricePerDay: string;
+};
+
+export type DiscoverReview = {
+  id: number;
+  date: string;
+  author: DiscoverUser;
+  rating: number;
+  text: string;
+};
+
+export type DiscoverUser = {
+  id: number;
+  username: string;
+  avatar: any;
 };

@@ -25,6 +25,7 @@ export default function TripDetails() {
         contentContainerStyle={{
           paddingBottom: bottom + 20,
         }}
+        showsVerticalScrollIndicator={false}
       >
         <View style={[defaultStyles.screenContainer, styles.contentContainer]}>
           <DetailHeader
