@@ -5,6 +5,7 @@ import IMAGES from "../../constants/images";
 import { formatDateMonthYear } from "../../utils/helpers";
 import AppButton from "../AppButton";
 import { TripPlan } from "../../utils/types";
+import defaultStyles from "../../constants/styles";
 
 interface Props {
   item: TripPlan;
@@ -14,16 +15,19 @@ export default function LatestTripItem({ item, onShowPlanDetails }: Props) {
   if (!item.userTripOption) return null;
   return (
     <>
-      <Image
-        source={
-          item.userTripOption.locationInfo.photoRef
-            ? {
-                uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${item.userTripOption.locationInfo.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
-              }
-            : IMAGES.default_trip_thumbnail
-        }
-        style={styles.thumbnail}
-      />
+      <View style={[styles.thumbnailContainer, defaultStyles.shadowDark]}>
+        <Image
+          source={
+            item.userTripOption.locationInfo.photoRef
+              ? {
+                  uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${item.userTripOption.locationInfo.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
+                }
+              : IMAGES.default_trip_thumbnail
+          }
+          style={styles.thumbnail}
+        />
+      </View>
+
       <Text style={styles.title}>{item.userTripOption.locationInfo.name}</Text>
       <View style={styles.subTitleContainer}>
         <Text style={styles.subTitleText}>
@@ -44,9 +48,14 @@ export default function LatestTripItem({ item, onShowPlanDetails }: Props) {
 }
 
 const styles = StyleSheet.create({
-  thumbnail: {
+  thumbnailContainer: {
     width: "100%",
     height: 225,
+    borderRadius: 14,
+  },
+  thumbnail: {
+    width: "100%",
+    height: "100%",
     borderRadius: 14,
   },
   title: {
