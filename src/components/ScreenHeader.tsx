@@ -1,15 +1,23 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import COLORS from "../../constants/colors";
-import { headerHeight, screenPadding } from "../../constants/sizes";
+import COLORS from "../constants/colors";
+import { headerHeight, screenPadding } from "../constants/sizes";
 
 interface Props {
-  onAddNewTripPlan: () => void;
+  headerTitle: string;
+  headerBtnIconName: keyof typeof AntDesign.glyphMap;
+  headerBtnSize: number;
+  onHeaderBtnPress?: () => void;
 }
 
-export default function HomeHeader({ onAddNewTripPlan }: Props) {
+export default function ScreenHeader({
+  headerTitle,
+  headerBtnIconName,
+  headerBtnSize,
+  onHeaderBtnPress,
+}: Props) {
   const { top } = useSafeAreaInsets();
   return (
     <View
@@ -17,16 +25,21 @@ export default function HomeHeader({ onAddNewTripPlan }: Props) {
         ...styles.headerContainer,
         position: "absolute",
         top: top,
-        left: screenPadding.horizontal,
-        right: screenPadding.horizontal,
+        left: 0,
+        right: 0,
         height: headerHeight,
         alignItems: "center",
+        paddingHorizontal: screenPadding.horizontal,
         zIndex: 100,
       }}
     >
-      <Text style={styles.headerTitle}>My Trips</Text>
-      <TouchableOpacity style={styles.headerAddBtn} onPress={onAddNewTripPlan}>
-        <Ionicons name="add-circle" size={46} color={COLORS.primary} />
+      <Text style={styles.headerTitle}>{headerTitle}</Text>
+      <TouchableOpacity style={styles.headerAddBtn} onPress={onHeaderBtnPress}>
+        <AntDesign
+          name={headerBtnIconName}
+          size={headerBtnSize}
+          color={COLORS.primary}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -41,7 +54,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontFamily: "outfit-bold",
-    fontSize: 36,
+    fontSize: 30,
     color: COLORS.primary,
   },
   headerAddBtn: {

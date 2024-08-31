@@ -12,7 +12,7 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AnimatedLoadingIcon from "../../components/AnimatedLoadingIcon";
 import AddNewTripCard from "../../components/home/AddNewTripCard";
-import HomeHeader from "../../components/home/HomeHeader";
+import ScreenHeader from "../../components/ScreenHeader";
 import UserTripList from "../../components/home/UserTripList";
 import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
@@ -66,7 +66,12 @@ export default function Home() {
         paddingBottom: 4,
       }}
     >
-      <HomeHeader onAddNewTripPlan={handleAddBtnPress} />
+      <ScreenHeader
+        headerTitle="My Trips"
+        headerBtnIconName="pluscircleo"
+        headerBtnSize={34}
+        onHeaderBtnPress={handleAddBtnPress}
+      />
       {isFetching ? (
         <AnimatedLoadingIcon
           size={60}

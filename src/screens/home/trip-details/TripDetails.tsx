@@ -1,16 +1,15 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import React from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AnimatedScrollView from "../../../components/trip-details/AnimatedScrollView";
 import DetailHeader from "../../../components/trip-details/DetailHeader";
 import FlightSection from "../../../components/trip-details/FlightSection";
-import COLORS from "../../../constants/colors";
-import IMAGES from "../../../constants/images";
-import defaultStyles from "../../../constants/styles";
-import { RootStackParamList } from "../../../utils/navigation-types";
 import HotelSection from "../../../components/trip-details/HotelSection";
 import PlanSection from "../../../components/trip-details/PlanSection";
-import AnimatedScrollView from "../../../components/trip-details/AnimatedScrollView";
+import COLORS from "../../../constants/colors";
+import defaultStyles from "../../../constants/styles";
+import { RootStackParamList } from "../../../utils/navigation-types";
 
 export default function TripDetails() {
   const { bottom } = useSafeAreaInsets();

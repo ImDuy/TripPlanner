@@ -28,7 +28,6 @@ export default function TabNavigation() {
         },
         tabBarStyle: {
           backgroundColor: COLORS.white,
-
           height: tabBarHeight + insets.bottom,
           paddingTop: 2,
         },
