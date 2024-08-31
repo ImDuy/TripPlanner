@@ -16,20 +16,20 @@ const defaultStyles = StyleSheet.create({
     fontSize: 30,
   },
   shadowLight: {
-    elevation: 2,
+    elevation: 3,
     shadowColor: "black",
     shadowRadius: 4,
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowOffset: {
       width: 0,
       height: 2,
     },
   },
   shadowDark: {
-    elevation: 4,
+    elevation: 6,
     shadowColor: "black",
     shadowRadius: 4,
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.4,
     shadowOffset: {
       width: 0,
       height: 2,

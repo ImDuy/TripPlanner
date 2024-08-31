@@ -4,7 +4,7 @@ import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import COLORS from "../constants/colors";
 import { tabBarHeight } from "../constants/sizes";
-import Discover from "../screens/Discover";
+import Discover from "../screens/discover/Discover";
 import Home from "../screens/home/Home";
 import Profile from "../screens/Profile";
 import { TabParamList } from "../utils/navigation-types";
@@ -45,7 +45,7 @@ export default function TabNavigation() {
                 borderBottomColor: focused ? color : "transparent",
               }}
             >
-              <AntDesign name="home" size={26} color={color} />
+              <AntDesign name="home" size={27} color={color} />
             </View>
           ),
         }}

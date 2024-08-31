@@ -1,14 +1,23 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import COLORS from "../constants/colors";
 import { headerHeight, screenPadding } from "../constants/sizes";
+import defaultStyles from "../constants/styles";
 
 interface Props {
   headerTitle: string;
   headerBtnIconName: keyof typeof AntDesign.glyphMap;
   headerBtnSize: number;
+  headerBtnContainerStyle?: StyleProp<ViewStyle>;
   onHeaderBtnPress?: () => void;
 }
 
@@ -17,6 +26,7 @@ export default function ScreenHeader({
   headerBtnIconName,
   headerBtnSize,
   onHeaderBtnPress,
+  headerBtnContainerStyle,
 }: Props) {
   const { top } = useSafeAreaInsets();
   return (
@@ -33,8 +43,11 @@ export default function ScreenHeader({
         zIndex: 100,
       }}
     >
-      <Text style={styles.headerTitle}>{headerTitle}</Text>
-      <TouchableOpacity style={styles.headerAddBtn} onPress={onHeaderBtnPress}>
+      <Text style={defaultStyles.headerTitle}>{headerTitle}</Text>
+      <TouchableOpacity
+        style={[styles.headerAddBtn, headerBtnContainerStyle]}
+        onPress={onHeaderBtnPress}
+      >
         <AntDesign
           name={headerBtnIconName}
           size={headerBtnSize}
@@ -51,11 +64,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: COLORS.white,
-  },
-  headerTitle: {
-    fontFamily: "outfit-bold",
-    fontSize: 30,
-    color: COLORS.primary,
   },
   headerAddBtn: {
     padding: 4,

@@ -99,9 +99,9 @@ const TripItem = ({
 const styles = StyleSheet.create({
   olderPlanText: {
     fontFamily: "outfit-medium",
-    fontSize: 16,
+    fontSize: 18,
     color: COLORS.gray,
-    marginTop: 18,
+    marginTop: 24,
   },
   itemContainer: {
     flexDirection: "row",

@@ -69,7 +69,7 @@ export default function Home() {
       <ScreenHeader
         headerTitle="My Trips"
         headerBtnIconName="pluscircleo"
-        headerBtnSize={34}
+        headerBtnSize={36}
         onHeaderBtnPress={handleAddBtnPress}
       />
       {isFetching ? (

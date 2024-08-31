@@ -22,3 +22,11 @@ type FireStoreTripData = {
   totalNumberOfDays: number;
   budget: string;
 };
+
+export type DiscoverPlace = {
+  id: number;
+  image: any;
+  title: string;
+  location: string;
+  description: string;
+};
