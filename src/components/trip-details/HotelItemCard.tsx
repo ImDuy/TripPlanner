@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import IMAGES from "../../constants/images";
 import COLORS from "../../constants/colors";
 import { googlePlaceSearchByText } from "../../utils/helpers";
+import defaultStyles from "../../constants/styles";
 
 interface Props {
   name: string;
@@ -37,7 +38,7 @@ export default function HotelItemCard({
       onPress={onItemPress}
     >
       <View>
-        <View style={styles.thumbnailContainer}>
+        <View style={[styles.thumbnailContainer, defaultStyles.shadowDark]}>
           <Image
             source={
               photoRef
@@ -77,15 +78,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 130,
     borderRadius: 16,
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 1,
-    elevation: 4,
   },
   thumbnail: {
     width: "100%",
