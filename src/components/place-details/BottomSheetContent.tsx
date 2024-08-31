@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
     fontFamily: "outfit-regular",
   },
-  seeAllText: { fontSize: 18, color: "#46acdf" },
+  seeAllText: { fontSize: 18 },
   reviewDividerSpacing: {
     marginTop: 6,
     marginBottom: 24,

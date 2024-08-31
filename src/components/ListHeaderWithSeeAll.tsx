@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   headerSubTitle: {
-    color: COLORS.gray,
+    color: "#46acdf",
     fontFamily: "outfit-medium",
     fontSize: 20,
     textDecorationLine: "underline",
