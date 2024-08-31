@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import COLORS from "../constants/colors";
-import SearchPlace from "../screens/home/create-trip/SearchPlace";
+import SearchLocation from "../screens/home/create-trip/SearchLocation";
 import { RootStackParamList } from "../utils/navigation-types";
 import TabNavigation from "./TabNavigation";
 import { CreateTripProvider } from "../context/CreateTripContext";
@@ -36,7 +36,7 @@ export default function RootStackNavigation() {
         <Stack.Screen name="TabNavigation" component={TabNavigation} />
         <Stack.Screen
           name="SearchPlace"
-          component={SearchPlace}
+          component={SearchLocation}
           options={{
             headerShown: true,
             title: "Where do you want to go?",

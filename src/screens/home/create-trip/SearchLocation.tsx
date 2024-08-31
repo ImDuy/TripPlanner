@@ -16,14 +16,14 @@ interface GooglePlaceDetailWithPhoto extends GooglePlaceDetail {
   }[];
 }
 
-export default function SearchPlace() {
+export default function SearchLocation() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { setTripData } = useContext(CreateTripContext);
 
   return (
     <View style={defaultStyles.screenContainer}>
       <GooglePlacesAutocomplete
-        placeholder="Search Places"
+        placeholder="Search Location"
         textInputProps={{
           autoCorrect: false,
           autoCapitalize: "words",

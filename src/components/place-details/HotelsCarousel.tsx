@@ -1,18 +1,11 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React from "react";
-import { DiscoverHotel } from "../../utils/types";
-import defaultStyles from "../../constants/styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import COLORS from "../../constants/colors";
-import RatingStars from "../RatingStars";
 import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import COLORS from "../../constants/colors";
+import defaultStyles from "../../constants/styles";
+import { DiscoverHotel } from "../../utils/types";
+import RatingStars from "../RatingStars";
 
 interface Props {
   hotelList: DiscoverHotel[];
