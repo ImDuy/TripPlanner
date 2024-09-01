@@ -48,6 +48,7 @@ export default function SignUp() {
         // Signed up
         if (toast) Toast.hide(toast);
         toast = Toast.show("Signed up successfully!");
+        navigation.navigate("SignIn");
       })
       .catch((error) => {
         const errorMessage = error.message.slice(10);

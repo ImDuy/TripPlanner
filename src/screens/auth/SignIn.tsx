@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Keyboard, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Toast from "react-native-root-toast";
@@ -22,6 +22,15 @@ export default function SignIn() {
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const [signInInfo, setSignInInfo] = useState({ email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  //reset user entered info when screen blur
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("blur", () => {
+      setSignInInfo({ email: "", password: "" });
+      Keyboard.dismiss();
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   const handleEmailTextChanged = (text: string) => {
     setSignInInfo((prevState) => {
@@ -51,8 +60,6 @@ export default function SignIn() {
         rootNavigation.navigate("TabNavigation", {
           screen: "Home",
         });
-        setSignInInfo({ email: "", password: "" });
-        Keyboard.dismiss();
       })
       .catch((error) => {
         const errorMessage = error.message.slice(10);
