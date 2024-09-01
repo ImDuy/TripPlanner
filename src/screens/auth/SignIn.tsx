@@ -1,7 +1,7 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Keyboard, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Toast from "react-native-root-toast";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -51,6 +51,8 @@ export default function SignIn() {
         rootNavigation.navigate("TabNavigation", {
           screen: "Home",
         });
+        setSignInInfo({ email: "", password: "" });
+        Keyboard.dismiss();
       })
       .catch((error) => {
         const errorMessage = error.message.slice(10);
