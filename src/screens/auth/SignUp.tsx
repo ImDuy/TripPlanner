@@ -35,7 +35,6 @@ export default function SignUp() {
     navigation.navigate("SignIn");
   };
   const handleSignUp = () => {
-    console.log("clicked");
     // check info empty?
     if (!signUpInfo.fullName || !signUpInfo.email || !signUpInfo.password) {
       if (toast) Toast.hide(toast);
