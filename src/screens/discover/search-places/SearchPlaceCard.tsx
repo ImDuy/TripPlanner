@@ -23,7 +23,7 @@ export default function SearchPlaceCard({ item, index }: Props) {
           height: index % 3 === 0 ? 180 : 220,
         },
       ]}
-      entering={index < 6 ? FadeInDown.delay(60) : undefined}
+      entering={index < 6 ? FadeInDown.delay(100) : undefined}
     >
       <TouchableOpacity
         style={styles.cardInnerContainer}
