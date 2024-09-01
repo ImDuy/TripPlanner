@@ -57,7 +57,7 @@ export default function SearchPlaces() {
         showsVerticalScrollIndicator={false}
         data={data}
         numColumns={2}
-        contentContainerStyle={{ paddingVertical: 2 + bottom }}
+        contentContainerStyle={{ paddingTop: 2, paddingBottom: 2 + bottom }}
         estimatedItemSize={220}
         renderItem={({ item, index }) => (
           <SearchPlaceCard item={item} index={index} />
