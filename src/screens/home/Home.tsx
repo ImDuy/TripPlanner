@@ -2,7 +2,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import {
   collection,
   documentId,
-  getDocs,
+  onSnapshot,
   orderBy,
   query,
   where,
@@ -12,8 +12,8 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AnimatedLoadingIcon from "../../components/AnimatedLoadingIcon";
 import AddNewTripCard from "../../components/home/AddNewTripCard";
-import ScreenHeader from "../../components/ScreenHeader";
 import UserTripList from "../../components/home/UserTripList";
+import ScreenHeader from "../../components/ScreenHeader";
 import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
 import { auth, db } from "../../utils/firebase-config";
@@ -28,23 +28,24 @@ export default function Home() {
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
-    const fetchUserTrips = async () => {
-      if (!user) return;
-      setIsFetching(true);
+    if (!user) return;
+    const q = query(
+      collection(db, "UserTrips"),
+      where("userId", "==", user.uid),
+      orderBy(documentId(), "desc")
+    );
+    // event listener that fire when firestore data changes
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setUserTrips([]);
-      const q = query(
-        collection(db, "UserTrips"),
-        where("userId", "==", user.uid),
-        orderBy(documentId(), "desc")
-      );
-      const querySnapshot = await getDocs(q);
+      setIsFetching(true);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         setUserTrips((prevState) => [...prevState, doc.data() as TripPlan]);
       });
       setIsFetching(false);
-    };
-    fetchUserTrips();
+    });
+
+    return () => unsubscribe();
   }, [user]);
 
   const handleAddBtnPress = () => {
