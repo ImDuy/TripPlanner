@@ -1,4 +1,5 @@
 import { chatSession } from "./geminiAI-config";
+import { DiscoverHotel, DiscoverPlace } from "./types";
 
 export function numberOfDays(start: Date, end: Date) {
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -70,6 +71,11 @@ export async function googlePlaceSearchByText(placeName: string) {
   const resp = await fetch(
     `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeName}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`
   );
-
   return resp.json();
+}
+
+export function isDiscoverPlace(
+  discoverItem: DiscoverPlace | DiscoverHotel
+): discoverItem is DiscoverPlace {
+  return (discoverItem as DiscoverPlace).hotels !== undefined;
 }

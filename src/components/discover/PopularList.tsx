@@ -8,17 +8,23 @@ import {
 } from "react-native";
 import React from "react";
 import COLORS from "../../constants/colors";
-import { PLACES } from "../../utils/data";
 import { DiscoverPlace } from "../../utils/types";
 import defaultStyles from "../../constants/styles";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../utils/navigation-types";
 import ListHeaderWithSeeAll from "../ListHeaderWithSeeAll";
+import { PLACES } from "../../constants/data";
 
-export default function PopularList() {
+interface Props {
+  onListHeaderBtnPress?: () => void;
+}
+export default function PopularList({ onListHeaderBtnPress }: Props) {
   return (
     <View style={styles.container}>
-      <ListHeaderWithSeeAll title="Popular" />
+      <ListHeaderWithSeeAll
+        title="Popular"
+        onSeeAllPress={onListHeaderBtnPress}
+      />
       <FlatList
         scrollEnabled={false}
         data={PLACES}
@@ -26,9 +32,7 @@ export default function PopularList() {
         columnWrapperStyle={{ justifyContent: "space-between" }}
         contentContainerStyle={{ paddingHorizontal: 2, paddingVertical: 8 }}
         renderItem={({ item }) => <PopularCard item={item} />}
-        ItemSeparatorComponent={() => (
-          <View style={{ width: 20, height: 20 }} />
-        )}
+        ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
       />
     </View>
   );

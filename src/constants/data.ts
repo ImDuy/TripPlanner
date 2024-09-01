@@ -1,4 +1,4 @@
-import { DiscoverPlace } from "./types";
+import { DiscoverHotel, DiscoverPlace } from "../utils/types";
 
 const USERS = {
   1: {
@@ -227,4 +227,23 @@ export const PLACES: DiscoverPlace[] = [
     reviews: [REVIEWS[2], REVIEWS[1]],
     hotels: [HOTELS[7], HOTELS[8]],
   },
+];
+
+export const SEARCH_PLACES: DiscoverPlace[] = [...PLACES, ...TOP_PLACES].map(
+  (item) => ({
+    ...item,
+    id: Date.now() + Math.random(),
+  })
+);
+
+export const SEARCH_HOTELS: DiscoverHotel[] = [...Object.values(HOTELS)].map(
+  (item) => ({
+    ...item,
+    id: Date.now() + Math.random(),
+  })
+);
+
+export const SEARCH_ALL: (DiscoverPlace | DiscoverHotel)[] = [
+  ...SEARCH_PLACES,
+  ...SEARCH_HOTELS,
 ];

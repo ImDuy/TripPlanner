@@ -12,6 +12,7 @@ export type RootStackParamList = {
   CreateTrip: undefined;
   TripDetails: { tripData: TripPlan };
   PlaceDetails: { placeItem: DiscoverPlace };
+  SearchPlaces: { activeTab: DiscoverFilterOption };
 };
 export type AuthStackParamList = {
   LandingPage: undefined;
@@ -23,3 +24,4 @@ export type TabParamList = {
   Discover: undefined;
   Profile: undefined;
 };
+export type DiscoverFilterOption = "All" | "Places" | "Hotels";

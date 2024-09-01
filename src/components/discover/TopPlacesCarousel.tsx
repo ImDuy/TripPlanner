@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import COLORS from "../../constants/colors";
 import defaultStyles from "../../constants/styles";
-import { TOP_PLACES } from "../../utils/data";
+import { TOP_PLACES } from "../../constants/data";
 import { RootStackParamList } from "../../utils/navigation-types";
 import { DiscoverPlace } from "../../utils/types";
 

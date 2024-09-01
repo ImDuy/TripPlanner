@@ -13,6 +13,7 @@ import CreateTrip from "../screens/home/create-trip/CreateTrip";
 import AuthStackNavigation from "./AuthStackNavigation";
 import TripDetails from "../screens/home/trip-details/TripDetails";
 import PlaceDetails from "../screens/discover/place-details/PlaceDetails";
+import SearchPlaces from "../screens/discover/search-places/SearchPlaces";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNavigation() {
@@ -80,6 +81,15 @@ export default function RootStackNavigation() {
             headerTitle: "",
             headerTransparent: true,
             headerTintColor: COLORS.white,
+          }}
+        />
+        <Stack.Screen
+          name="SearchPlaces"
+          component={SearchPlaces}
+          options={{
+            headerShown: true,
+            headerTitle: "Find your dream trip",
+            headerTransparent: true,
           }}
         />
       </Stack.Navigator>

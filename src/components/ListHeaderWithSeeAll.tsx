@@ -15,17 +15,19 @@ interface Props {
   titleStyle?: StyleProp<TextStyle>;
   seeAllStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<ViewStyle>;
+  onSeeAllPress?: () => void;
 }
 export default function ListHeaderWithSeeAll({
   title,
   titleStyle,
   seeAllStyle,
   containerStyle,
+  onSeeAllPress,
 }: Props) {
   return (
     <View style={[styles.headerContainer, containerStyle]}>
       <Text style={[styles.headerTitle, titleStyle]}>{title}</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onSeeAllPress}>
         <Text style={[styles.headerSubTitle, seeAllStyle]}>See All</Text>
       </TouchableOpacity>
     </View>

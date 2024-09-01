@@ -8,6 +8,8 @@ import HotelsCarousel from "./HotelsCarousel";
 import OverallRating from "./OverallRating";
 import Divider from "../Divider";
 import ReviewList from "./ReviewList";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../utils/navigation-types";
 
 interface Props {
   details: DiscoverPlace;
@@ -15,6 +17,7 @@ interface Props {
 }
 export default function BottomSheetContent({ details, style }: Props) {
   const { description, rating } = details;
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <BottomSheetScrollView
       showsVerticalScrollIndicator={false}
@@ -40,6 +43,9 @@ export default function BottomSheetContent({ details, style }: Props) {
         titleStyle={styles.sectionTitle}
         seeAllStyle={styles.seeAllText}
         containerStyle={styles.sectionHeaderContainer}
+        onSeeAllPress={() =>
+          navigation.navigate("SearchPlaces", { activeTab: "Hotels" })
+        }
       />
       <HotelsCarousel hotelList={details.hotels} />
 

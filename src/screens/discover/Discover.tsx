@@ -7,9 +7,12 @@ import ScreenHeader from "../../components/ScreenHeader";
 import COLORS from "../../constants/colors";
 import { headerHeight } from "../../constants/sizes";
 import defaultStyles from "../../constants/styles";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../utils/navigation-types";
 
 export default function Discover() {
   const { top } = useSafeAreaInsets();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <View
@@ -23,6 +26,9 @@ export default function Discover() {
         headerBtnIconName="search1"
         headerBtnSize={17}
         headerBtnContainerStyle={styles.headerBtnContainerStyle}
+        onHeaderBtnPress={() =>
+          navigation.navigate("SearchPlaces", { activeTab: "All" })
+        }
       />
 
       {/* Content */}
@@ -31,7 +37,11 @@ export default function Discover() {
         showsVerticalScrollIndicator={false}
       >
         <TopPlacesCarousel />
-        <PopularList />
+        <PopularList
+          onListHeaderBtnPress={() =>
+            navigation.navigate("SearchPlaces", { activeTab: "Places" })
+          }
+        />
       </ScrollView>
     </View>
   );
