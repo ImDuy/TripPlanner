@@ -15,6 +15,6 @@
 - Google Gemini API
 - Google Places API
 
-### Demo
+## Demo
 
 [Watch here] (https://drive.google.com/file/d/1GtjgKCPj6gpkQyVfCmwqlsXBcSe6o0A6/view?usp=sharing)
