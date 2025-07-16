@@ -3,8 +3,8 @@
 ## Features 🌟
 
 - Login/Signup
-- Discover interesting places and hotels
-- Leveraging GeminiAI to generate trip plans based on user's preferences
+- Leverage GeminiAI to generate trip plans based on user's preferences
+- Suggest popular places and hotels
 ## Built With 🛠
 
 - React Native (Expo)
