@@ -4,8 +4,7 @@
 
 - Login/Signup
 - Discover interesting places and hotels
-- Creating trip plans based on user preferences (using GeminiAI)
-
+- Leveraging GeminiAI to generate trip plans based on user's preferences
 ## Built With 🛠
 
 - React Native (Expo)
